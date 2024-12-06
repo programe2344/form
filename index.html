@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Seu conteúdo existente do head -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup de Pagamento</title>
+       
+</head>
+<body>
+    <!-- Pop-up para 1.000 VISUALIZAÇÕES -->
+    <div class="custom-popup" id="mudaqui1" style="display:none;">
+        <!-- Conteúdo completo do pop-up -->
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                        <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">1.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                               <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                               <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+                <!-- Seção de confirmação -->
+            
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção inicio de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>&nbsp &nbsp + Engajamento no canal </small>
+    </div>
+
+
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="16.99" data-name="+100 INSCRITOS">
+                +100 INSCRITOS = 16,99 R$
+            </label>
+        </div>
+    </div>
+<br>
+    <!-- Seção FIM de Order Bump -->
+
+    <!-- Botão de Finalizar -->
+    <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+
+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up para 3.000 VISUALIZAÇÕES -->
+    <div class="custom-popup" id="mudaqui2" style="display:none;">
+        <!-- Conteúdo completo do pop-up -->
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                        <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">3.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="16.99" data-name="+100 INSCRITOS">
+                +100 INSCRITOS = 16,99 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="46.45" data-name="+300 INSCRITOS">
+                +300 INSCRITOS = 46,45 R$
+            </label>
+        </div>
+    </div>
+<br>
+    <!-- Botão de Finalizar -->
+    <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up para 5.000 VISUALIZAÇÕES -->
+    <div class="custom-popup" id="mudaqui3" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">5.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+                <!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="16.99" data-name="+100 INSCRITOS">
+                +100 INSCRITOS = 16,99 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="46.45" data-name="+300 INSCRITOS">
+                +300 INSCRITOS = 46,45 R$
+            </label>
+        </div>
+    </div>
+<br>
+    <!-- Botão de Finalizar -->
+    <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-ups para os demais pacotes -->
+    <!-- Repita o mesmo padrão para cada pacote, alterando o ID, o título e os links de pagamento -->
+
+    <!-- Exemplo para 10.000 VISUALIZAÇÕES -->
+    <div class="custom-popup" id="mudaqui4" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">10.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+                <!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="46.45" data-name="+300 INSCRITOS">
+                +300 INSCRITOS = 46,45 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="85.40" data-name="+500 INSCRITOS">
+                +500 INSCRITOS = 85,40 R$
+            </label>
+        </div>
+    </div>
+<br>
+
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+      <div class="custom-popup" id="mudaqui5" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">20.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                               <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="85.40" data-name="+500 INSCRITOS">
+                +500 INSCRITOS = 85,40 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="146.90" data-name="+1.000 INSCRITOS">
+                +1.000 INSCRITOS = 146,90 R$
+            </label>
+        </div>
+    </div>
+<br>
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+  <div class="custom-popup" id="mudaqui6" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">30.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+                <!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump --> <!-- Seção de Order Bump -->
+   <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="85.40" data-name="+500 INSCRITOS">
+                +500 INSCRITOS = 85,40 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="146.90" data-name="+1.000 INSCRITOS">
+                +1.000 INSCRITOS = 146,90 R$
+            </label>
+        </div>
+    </div>
+    <br>
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+      <div class="custom-popup" id="mudaqui7" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                        <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">50.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="85.40" data-name="+500 INSCRITOS">
+                +500 INSCRITOS = 85,40 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="146.90" data-name="+1.000 INSCRITOS">
+                +1.000 INSCRITOS = 146,90 R$
+            </label>
+        </div>
+    </div>
+<br>
+
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+
+  <div class="custom-popup" id="mudaqui8" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">100.000 VISUALIZAÇÕES</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="video">LINK DO VÍDEO:</label>
+                    <input type="url" class="video" placeholder="link do vídeo" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2l144 0c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48l-97.5 0c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3l0-38.3 0-48 0-24.9c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192l64 0c17.7 0 32 14.3 32 32l0 224c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32L0 224c0-17.7 14.3-32 32-32z"/>
+        </svg>&nbsp &nbsp +Engajamento turbo com likes </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="85.40" data-name="+500 INSCRITOS">
+                +500 INSCRITOS = 85,40 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="146.90" data-name="+1.000 INSCRITOS">
+                +1.000 INSCRITOS = 146,90 R$
+            </label>
+        </div>
+    </div>
+
+<br> 
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+<!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+      <div class="custom-popup" id="mudaqui9" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">100 INSCRITOS</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="channel">LINK DO CANAL:</label>
+                    <input type="url" class="channel" placeholder="link do canal" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>&nbsp &nbsp + Engajamento no canal </small>
+    </div>
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="24.60" data-name="+1.000 VISUALIZAÇÕES">
+                +1.000 VISUALIZAÇÕES = 24,60 R$
+            </label>
+        </div>
+    </div>
+
+<br>
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+  <div class="custom-popup" id="mudaqui10" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                        <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">300 INSCRITOS</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="channel">LINK DO CANAL:</label>
+                    <input type="url" class="channel" placeholder="link do canal" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+               <!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>&nbsp &nbsp + Engajamento no canal </small>
+    </div>
+
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="24.60" data-name="+1.000 VISUALIZAÇÕES">
+                +1.000 VISUALIZAÇÕES = 24,60 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="53.10" data-name="+3.000 VISUALIZAÇÕES">
+                +3.000 VISUALIZAÇÕES = 53,10 R$
+            </label>
+        </div>
+    </div>
+<br>
+
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+
+      <div class="custom-popup" id="mudaqui11" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                        <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">500 INSCRITOS</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="channel">LINK DO CANAL:</label>
+                    <input type="url" class="channel" placeholder="link do canal" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>&nbsp &nbsp + Engajamento no canal </small>
+    </div>
+
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="24.60" data-name="+1.000 VISUALIZAÇÕES">
+                +1.000 VISUALIZAÇÕES = 24,60 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="53.10" data-name="+3.000 VISUALIZAÇÕES">
+                +3.000 VISUALIZAÇÕES = 53,10 R$
+            </label>
+        </div>
+    </div>
+
+<br>
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+      <div class="custom-popup" id="mudaqui12" style="display:none;">
+        <div class="popup-container">
+            <div class="popup-box">
+                <!-- Botão de fechar -->
+                <div class="close-btn">
+                    <span>X</span>
+                </div>
+                <!-- Cabeçalho do pop-up -->
+                <div class="popup-header">
+                    <!-- Ícone e título -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="popup-icon" fill="white">
+                         <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6C14.9 166.9 14.9 256.3 14.9 256.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8C561.1 345.7 561.1 256.3 561.1 256.3s0-89.4-11.4-132.3zM232.2 337.6V174.4l142.7 81.6-142.7 81.6z"/>
+                    </svg>
+                    <h2 class="initial-title">1.000 INSCRITOS</h2>
+                </div>
+                <!-- Barra de progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+                <!-- Formulário -->
+                <form class="popup-form">
+                    <label class="label-text" for="name">NOME:</label>
+                    <input type="text" class="name" placeholder="Seu nome" required>
+
+                    <label class="label-text" for="whatsapp">WHATSAPP:</label>
+                    <input type="tel" class="whatsapp" placeholder="WhatsApp" maxlength="15" required pattern="[0-9]*">
+
+                    <label class="label-text" for="channel">LINK DO CANAL:</label>
+                    <input type="url" class="channel" placeholder="link do canal" maxlength="60" required>
+                </form>
+                <!-- Seção de pagamento -->
+                <div class="payment-section hidden">
+                    <p class="payment-text">Falta pouco, <strong class="user-name"></strong>! Qual a forma de pagamento?</p>
+                    <div class="payment-options">
+                        <label>
+                            <!-- Ícone PIX -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-pix">
+                                <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="pix">
+                            <span><strong>PIX</strong> <small class="discount">5% DESCONTO</small></span>
+                        </label>
+                        <label>
+                            <!-- Ícone Crédito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon-credito">
+                                <path d="M0 80C0 53.5 21.5 32 48 32H528C554.5 32 576 53.5 576 80V432C576 458.5 554.5 480 528 480H48C21.5 480 0 458.5 0 432V80zM64 128V176H512V128H64zM64 384H512V256H64V384z"/>
+                            </svg>
+                            <input type="radio" name="payment" value="credito">
+                            <span><strong>CRÉDITO</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Seção de confirmação -->
+<!-- Seção de confirmação -->
+<div class="confirmation-section hidden">
+    <p class="confirmation-text"></p>
+
+    <!-- Seção de Order Bump -->
+     <!-- Seção de Order Bump -->
+    <div class="order-bump">
+       <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg> Quer otimizar seus resultados?
+   <svg id="iconotimiza" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
+        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288l111.5 0L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7l-111.5 0L349.4 44.6z"/>
+    </svg>
+
+        <label>
+            <input type="checkbox" class="campaign-optimized" value="17">
+            Campanha Otimizada = 17 R$
+        </label>
+        <small><svg id="engajaturbo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>&nbsp &nbsp + Engajamento no canal </small>
+    </div>
+
+
+    <!-- Seção de Pacotes Adicionais -->
+    <div class="additional-package">
+        Quer contratar um pacote adicional?
+        <div class="additional-options">
+            <label>
+                <input type="checkbox" class="additional-package-option" value="24.60" data-name="+1.000 VISUALIZAÇÕES">
+                +1.000 VISUALIZAÇÕES = 24,60 R$
+            </label>
+            <label>
+                <input type="checkbox" class="additional-package-option" value="53.10" data-name="+3.000 VISUALIZAÇÕES">
+                +3.000 VISUALIZAÇÕES = 53,10 R$
+            </label>
+        </div>
+    </div>
+<br>
+
+ <button class="finalize-button">
+        <div class="button-content">
+            <span>FINALIZAR PEDIDO</span>
+            <span class="payment-icon"></span>
+        </div>
+        <div class="price"></div>
+    </button>
+    <!-- Texto de Pagamento Seguro com Ícone -->
+<div class="secure-payment" style="text-align: center; margin-top: 10px;">
+    <div style="display: inline-flex; align-items: center; white-space: nowrap;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 14px; height: 14px; fill: #DAA520; margin-right: 8px;">
+            <path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"/>
+        </svg>
+        <span style="font-size: 14px; color: white; margin: 0;"><strong>Pagamento 100% seguro</strong></span>
+    </div>
+</div>
+<!-- Fim do Texto de Pagamento Seguro com Ícone -->
+</div>
+            </div>
+        </div>
+    </div>
+
+ <!-- Dentro do seu modal, após a 'confirmation-section' -->
+<div class="order-summary hidden">
+    <h3>Resumo do Pedido</h3>
+    <p class="summary-text"></p>
+    <!-- Você pode adicionar mais detalhes aqui conforme necessário -->
+    <!-- Botão de fechar ou voltar, se necessário -->
+</div>
+<!-- Sua div "pagapro" que será exibida após o contador regressivo -->
+<div id="pagapro" style="display: none;">
+    <!-- Conteúdo da terceira tela do modal -->
+    <h2>Obrigado pelo seu pagamento!</h2>
+    <p>Seu pedido está sendo processado.</p>
+</div>
+
+</body>
+</html>
